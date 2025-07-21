@@ -1,18 +1,13 @@
-# - name: Install Chocolatey package provider
-#   win_chocolatey:
-#     name: chocolatey
-#     state: present
+- name: Ensure .NET Framework 4.8 is installed
+  win_chocolatey:
+    name: dotnetfx
+    version: 4.8.0.0
+    state: present
 
-- name: Download .NET Framework 4.8 installer
-  win_get_url:
-    url: https://download.visualstudio.microsoft.com/download/pr/1b2ca5df-baad-4194-9edb-83af1a3423f0/d04c77c0326ebc59f4aa440c6455356b/ndp48-web.exe
-    dest: C:\Windows\Temp\ndp48-web.exe
-
-- name: Install .NET Framework 4.8
-  win_package:
-    path: C:\Windows\Temp\ndp48-web.exe
-    arguments: /quiet /norestart
-    creates_path: 'C:\Program Files\dotnet'
+- name: Install Chocolatey package provider
+  win_chocolatey:
+    name: chocolatey
+    state: present
 
 - name: Install Google Chrome
   win_chocolatey:
