@@ -1,0 +1,12 @@
+# Combined PowerShell Bootstrap Script for Ansible Setup
+# COPY PASTE to ALL Vms PowerShell ****
+# Step 1: Download the ConfigureRemotingForAnsible script
+Invoke-WebRequest `
+  -Uri "https://raw.githubusercontent.com/AlbanAndrieu/ansible-windows/master/files/ConfigureRemotingForAnsible.ps1" `
+  -OutFile "$env:USERPROFILE\ConfigureRemotingForAnsible.ps1"
+
+# Step 2: Ensure script is executable
+Set-ExecutionPolicy RemoteSigned -Force
+
+# Step 3: Run the script with required flags
+& "$env:USERPROFILE\ConfigureRemotingForAnsible.ps1" -EnableCredSSP -SkipNetworkProfileCheck
