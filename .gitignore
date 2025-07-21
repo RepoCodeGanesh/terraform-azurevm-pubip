@@ -1,0 +1,8 @@
+terraform.exe
+.terraform/
+.terraform*
+.vs
+*.tfplan
+terraform.tfstate
+terraform.tfstate.backup
+secret.tfvars
