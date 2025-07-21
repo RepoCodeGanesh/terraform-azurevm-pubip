@@ -1,0 +1,35 @@
+- name: Install Chrome
+  win_package:
+    path: "{{ playbook_dir }}/roles/win_app_setup/files/chrome_installer.exe"
+    product_id: Google Chrome
+    arguments: /silent /install
+    creates_path: 'C:\Program Files\Google\Chrome\Application\chrome.exe'
+
+- name: Install Notepad++
+  win_package:
+    path: "{{ playbook_dir }}/roles/win_app_setup/files/notepadpp_installer.exe"
+    product_id: Notepad++
+    arguments: /S
+    creates_path: 'C:\Program Files\Notepad++\notepad++.exe'
+
+- name: Install Brave Browser
+  win_package:
+    path: "{{ playbook_dir }}/roles/win_app_setup/files/brave_installer.exe"
+    product_id: Brave
+    arguments: /silent /install
+    creates_path: 'C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe'
+
+- name: Install Active Directory RSAT tools
+  win_feature:
+    name: RSAT-AD-PowerShell
+    state: present
+
+- name: Ensure Snipping Tool is enabled
+  win_feature:
+    name: InkAndHandwritingServices
+    state: present
+
+- name: Create Success.txt on the desktop
+  win_copy:
+    content: "Deployment completed successfully."
+    dest: "{{ lookup('env','USERPROFILE') }}\\Desktop\\Success.txt"

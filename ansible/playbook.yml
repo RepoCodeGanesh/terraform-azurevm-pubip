@@ -1,0 +1,4 @@
+- name: Setup apps on Windows Server 2019
+  hosts: windows
+  roles:
+    - win_app_setup
